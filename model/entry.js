@@ -25,6 +25,10 @@ const entrySchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: true
+    },
+    role : {
+        type: Number,
+        default: 0
     }
 }, {timestamps: true}
 );

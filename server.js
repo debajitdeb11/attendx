@@ -1,5 +1,4 @@
 //jshint esversion: 6
-
 // .env file
 const envfile = require("dotenv").config();
 if (envfile.error) {
@@ -17,7 +16,6 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const { submit } = require("./controller/entry");
 
 // Connect to Database
 mongoose.connect(process.env.DATABASE, {
@@ -35,9 +33,13 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(cookieParser());
 
-// Routes
-app.use("/api", submit);
 
+// My Routes
+const entryRoute = require("./routes/entry");
+const adminRoute = require("./routes/auth");
+// Routes
+app.use("/api", entryRoute);
+app.use("/api", adminRoute);
 
 // Starting the server
 const PORT = process.env.PORT;
