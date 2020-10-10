@@ -39,25 +39,26 @@ const adminSchema = new mongoose.Schema({
 }, {timestamps: true} 
 );
 
-adminSchema
-.virtual("password")
-.set(function (password) {
-  this._password = password;
-  this.encrypt_password = this.securePassword(password);
-}).get(function () {
-  return this._password;
-})
-;
+//TODO: Not Working
+// adminSchema
+// .virtual("password")
+// .set(function (password) {
+//   this._password = password;
+//   this.encrypt_password = this.securePassword(password);
+// }).get(function () {
+//   return this._password;
+// })
+// ;
 
-adminSchema.method = {
+// adminSchema.method = {
 
-  securePassword : function (plainPassword) {
-    if (!plainPassword) return "";
-    const hash = bcrypt.hashSync(plainPassword, saltRounds);
-    console.log(hash);
-    return hash;
-  },
-};
+//   securePassword : function (plainPassword) {
+//     if (!plainPassword) return "";
+//     const hash = bcrypt.hashSync(plainPassword, saltRounds);
+//     console.log(hash);
+//     return hash;
+//   },
+// };
 
 
 // adminSchema.virtual("password")
